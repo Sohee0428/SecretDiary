@@ -79,9 +79,36 @@ class MainActivity : AppCompatActivity() {
                         .show()
             }
 
+            changePasswordBtn.setOnClickListener{
 
+                if(changePasswordMode){
+//                    번호를 저장하는 기능
+
+                }else{
+//                    changePasswordMode가 활성화 -> 비밀번호가 맞는지 확인
+
+                    val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
+
+                    val passwordFromUser = "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
+
+                    if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
+
+                        changePasswordMode = true
+
+                        Toast.makeText(this, "변경할 패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show()
+
+                        changePasswordBtn.setBackgroundColor(Color.RED)
+                    }else{
+//                    패스워드 실패
+
+                        AlertDialog.Builder(this)
+                            .setTitle("오류")
+                            .setMessage("비밀번호가 잘못되었습니다.")
+                            .setPositiveButton("확인") { _, _ -> }
+                            .show()
+                    }
+                }
+            }
         }
-
-
     }
 }
