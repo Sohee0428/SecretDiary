@@ -53,5 +53,35 @@ class MainActivity : AppCompatActivity() {
         numberPicker2
         numberPicker3
 
+        openBtn.setOnClickListener{
+
+            if (changePasswordMode){
+                Toast.makeText(this, "비밀번호 변경 중 입니다.", Toast.LENGTH_SHORT).show()
+                return@setOnClickListener
+            }
+
+            val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
+
+            val passwordFromUser = "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
+
+            if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
+//                패스워드 성공
+
+//    TODO 다이어리 페이지 작성 후에 넘겨주어야함
+//                startActivity()
+                }else{
+//                    패스워드 실패
+
+                    AlertDialog.Builder(this)
+                        .setTitle("오류")
+                        .setMessage("비밀번호가 잘못되었습니다.")
+                        .setPositiveButton("확인") { _, _ -> }
+                        .show()
+            }
+
+
+        }
+
+
     }
 }
