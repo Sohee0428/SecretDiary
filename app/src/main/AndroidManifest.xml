@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Aoppart2chapter03">
-        <activity android:name=".DiaryActivity"></activity>
+        <activity android:name=".DiaryActivity"
+             android:theme="@style/Theme.Aoppart2chapter03.NoActionBar"></activity>
         <activity
             android:name=".MainActivity"
             android:theme="@style/Theme.Aoppart2chapter03.NoActionBar">
