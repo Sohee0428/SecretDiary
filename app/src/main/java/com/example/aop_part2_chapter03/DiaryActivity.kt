@@ -12,6 +12,8 @@ import androidx.core.widget.addTextChangedListener
 
 class DiaryActivity : AppCompatActivity() {
 
+    private val handler = Handler(Looper.getMainLooper())
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_dialy)
@@ -19,7 +21,7 @@ class DiaryActivity : AppCompatActivity() {
         val detailPreferences = getSharedPreferences("diary", Context.MODE_PRIVATE)
         val diaryEdt = findViewById<EditText>(R.id.diaryEdt)
 
-        diaryEdt.setText(detailPreferences.getString("detail",""))
+        diaryEdt.setText(detailPreferences.getString("detail", ""))
 
         val runnable = Runnable {
             getSharedPreferences("diary", Context.MODE_PRIVATE).edit {
@@ -30,9 +32,12 @@ class DiaryActivity : AppCompatActivity() {
         }
 
         diaryEdt.addTextChangedListener {
-            detailPreferences.edit {
-                putString("detail",diaryEdt.text.toString())
-            }
+
+            Log.d("DiaryActivity", "TextChanged :: $it" )
+
+            handler.removeCallbacks(runnable)
+            handler.postDelayed(runnable, 500)
+
         }
     }
 }
