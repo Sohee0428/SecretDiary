@@ -46,6 +46,14 @@ class MainActivity : AppCompatActivity() {
 
     private var changePasswordMode = false
 
+    private fun showErrorAlertDialog() {
+        AlertDialog.Builder(this)
+            .setTitle("오류")
+            .setMessage("비밀번호가 잘못되었습니다.")
+            .setPositiveButton("확인") { _, _ -> }
+            .show()
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
@@ -74,11 +82,7 @@ class MainActivity : AppCompatActivity() {
                 }else{
 //                    패스워드 실패
 
-                    AlertDialog.Builder(this)
-                        .setTitle("오류")
-                        .setMessage("비밀번호가 잘못되었습니다.")
-                        .setPositiveButton("확인") { _, _ -> }
-                        .show()
+                showErrorAlertDialog()
             }
 
             changePasswordBtn.setOnClickListener{
@@ -113,12 +117,8 @@ class MainActivity : AppCompatActivity() {
                     }else{
 //                    패스워드 실패
 
-                        AlertDialog.Builder(this)
-                            .setTitle("오류")
-                            .setMessage("비밀번호가 잘못되었습니다.")
-                            .setPositiveButton("확인") { _, _ -> }
-                            .show()
-                    }
+                    showErrorAlertDialog()
+
                 }
             }
         }
