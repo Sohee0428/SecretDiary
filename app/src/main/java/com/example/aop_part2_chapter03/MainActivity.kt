@@ -8,6 +8,7 @@ import android.widget.NumberPicker
 import android.widget.Toast
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.widget.AppCompatButton
+import androidx.core.content.edit
 
 class MainActivity : AppCompatActivity() {
 
@@ -62,7 +63,8 @@ class MainActivity : AppCompatActivity() {
 
             val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
 
-            val passwordFromUser = "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
+            val passwordFromUser =
+                "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
 
             if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
 //                패스워드 성공
@@ -81,17 +83,27 @@ class MainActivity : AppCompatActivity() {
 
             changePasswordBtn.setOnClickListener{
 
-                if(changePasswordMode){
-//                    번호를 저장하는 기능
+            val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
+            val passwordFromUser =
+                "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
+
+            if (changePasswordMode) {
+
+//                    val editor = passwordPreferences.edit()
+//                    editor.putString()
+//                    기존에는 이렇게 작성해야하지만 코틀린은 아래처럼 작성하면 됨
+
+                passwordPreferences.edit(true) {
+                    putString("password", passwordFromUser)
+                }
+
+                changePasswordMode = false
+                changePasswordBtn.setBackgroundColor(Color.BLACK)
 
                 }else{
 //                    changePasswordMode가 활성화 -> 비밀번호가 맞는지 확인
 
-                    val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
-
-                    val passwordFromUser = "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
-
-                    if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
+                if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
 
                         changePasswordMode = true
 
