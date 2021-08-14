@@ -4,6 +4,8 @@ import android.content.Context
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.EditText
+import androidx.core.content.edit
+import androidx.core.widget.addTextChangedListener
 
 class DiaryActivity : AppCompatActivity() {
 
@@ -15,5 +17,11 @@ class DiaryActivity : AppCompatActivity() {
         val diaryEdt = findViewById<EditText>(R.id.diaryEdt)
 
         diaryEdt.setText(detailPreferences.getString("detail",""))
+
+        diaryEdt.addTextChangedListener {
+            detailPreferences.edit {
+                putString("detail",diaryEdt.text.toString())
+            }
+        }
     }
 }
