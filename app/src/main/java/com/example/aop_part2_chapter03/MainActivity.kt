@@ -1,6 +1,7 @@
 package com.example.aop_part2_chapter03
 
 import android.content.Context
+import android.content.Intent
 import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -76,9 +77,8 @@ class MainActivity : AppCompatActivity() {
 
             if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
 //                패스워드 성공
+                startActivity(Intent(this, DiaryActivity::class.java))
 
-//    TODO 다이어리 페이지 작성 후에 넘겨주어야함
-//                startActivity()
             } else {
 //                    패스워드 실패
 
