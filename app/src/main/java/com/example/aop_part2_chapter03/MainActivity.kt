@@ -62,9 +62,9 @@ class MainActivity : AppCompatActivity() {
         numberPicker2
         numberPicker3
 
-        openBtn.setOnClickListener{
+        openBtn.setOnClickListener {
 
-            if (changePasswordMode){
+            if (changePasswordMode) {
                 Toast.makeText(this, "비밀번호 변경 중 입니다.", Toast.LENGTH_SHORT).show()
                 return@setOnClickListener
             }
@@ -79,13 +79,14 @@ class MainActivity : AppCompatActivity() {
 
 //    TODO 다이어리 페이지 작성 후에 넘겨주어야함
 //                startActivity()
-                }else{
+            } else {
 //                    패스워드 실패
 
                 showErrorAlertDialog()
             }
 
-            changePasswordBtn.setOnClickListener{
+        }
+        changePasswordBtn.setOnClickListener {
 
             val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
             val passwordFromUser =
@@ -104,17 +105,17 @@ class MainActivity : AppCompatActivity() {
                 changePasswordMode = false
                 changePasswordBtn.setBackgroundColor(Color.BLACK)
 
-                }else{
+            } else {
 //                    changePasswordMode가 활성화 -> 비밀번호가 맞는지 확인
 
                 if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
 
-                        changePasswordMode = true
+                    changePasswordMode = true
 
-                        Toast.makeText(this, "변경할 패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show()
+                    Toast.makeText(this, "변경할 패스워드를 입력해주세요.", Toast.LENGTH_SHORT).show()
 
-                        changePasswordBtn.setBackgroundColor(Color.RED)
-                    }else{
+                    changePasswordBtn.setBackgroundColor(Color.RED)
+                } else {
 //                    패스워드 실패
 
                     showErrorAlertDialog()
