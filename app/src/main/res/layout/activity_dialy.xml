@@ -9,15 +9,30 @@
     tools:context=".DiaryActivity">
 
     <EditText
+        android:id="@+id/diaryTitleEdt"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@color/white"
+        android:gravity="start|top"
+        android:padding="10dp"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@id/diaryEdt"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_weight="1" />
+
+    <EditText
         android:id="@+id/diaryEdt"
         android:layout_width="0dp"
         android:layout_height="0dp"
         android:background="@color/white"
-        android:padding="10dp"
         android:gravity="start|top"
-        app:layout_constraintTop_toTopOf="parent"
+        android:padding="10dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintRight_toRightOf="parent"/>
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/diaryTitleEdt"
+        app:layout_constraintVertical_weight="10 " />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
