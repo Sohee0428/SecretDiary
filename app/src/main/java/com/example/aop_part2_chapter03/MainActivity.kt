@@ -73,7 +73,7 @@ class MainActivity : AppCompatActivity() {
             val passwordPreferences = getSharedPreferences("password", Context.MODE_PRIVATE)
 
             val passwordFromUser =
-                "${numberPicker1.value}${numberPicker3.value}${numberPicker3.value}"
+                "${numberPicker1.value}${numberPicker2.value}${numberPicker3.value}"
 
             if (passwordPreferences.getString("password", "000").equals(passwordFromUser)) {
 //                패스워드 성공
