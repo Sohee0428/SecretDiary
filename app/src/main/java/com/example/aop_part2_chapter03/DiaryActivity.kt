@@ -27,15 +27,16 @@ class DiaryActivity : AppCompatActivity() {
         diaryTitleEdt.setText(detailTitlePreferences.getString("titleName", ""))
 
         val runnable = Runnable {
+//            쓰레드를 통해 이용할 xml 수정 내용 - 수정한 내용을 xml에 반영하기
             getSharedPreferences("diary", Context.MODE_PRIVATE).edit {
                 putString("detail", diaryEdt.text.toString())
+//                commit이 아닌 apply로 저장된 형태로 비동기
             }
 
             Log.d("DiaryActivity", "SAVE!! ${diaryEdt.text}")
         }
 
         val runnable1 = Runnable {
-
             getSharedPreferences("title", Context.MODE_PRIVATE).edit {
                 putString("titleName", diaryTitleEdt.text.toString())
             }
@@ -47,6 +48,7 @@ class DiaryActivity : AppCompatActivity() {
 
             handler.removeCallbacks(runnable)
             handler.postDelayed(runnable, 500)
+//            다른 화면에서 xml을 바꾸기 때문에 handler 사용
 
         }
 
